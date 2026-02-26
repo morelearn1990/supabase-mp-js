@@ -75,7 +75,7 @@ export class SupabaseAuthClient extends GoTrueClient {
         }
       }
 
-      const { session, user } = responseData.data
+      const { session = null, user = null } = responseData.data || {}
 
       if (session) {
         console.log('[signInWithWechat] Session received, saving...', {
