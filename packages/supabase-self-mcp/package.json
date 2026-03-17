@@ -9,7 +9,8 @@
     "scripts": {
         "build": "bun build ./src/bridge/index.ts --outfile ./dist/index.mjs --target bun",
         "start": "bun run ./src/bridge/index.ts",
-        "dev": "bun run --watch ./src/bridge/index.ts"
+        "dev": "bun run --watch ./src/bridge/index.ts",
+        "test": "echo \"No tests yet\""
     },
     "devDependencies": {
         "bun-types": "latest",

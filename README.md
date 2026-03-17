@@ -387,6 +387,23 @@ const supabase = createClient('URL', 'KEY', {
 
 ## 📝 待支持功能
 
-## 📄 License
+- 补充更多的 E2E 环境集成用例
+
+## 🧑‍💻 参与开发
+
+本项目使用 [Bun](https://bun.sh/) 替代传统 npm/yarn 提升安装和执行性能。
+
+```bash
+# 1. 安装依赖
+bun install
+
+# 2. 运行构建
+bun run build
+
+# 3. 运行本地单元测试
+bun run test
+```
+
+为了确保代码质量，任何功能 PR 建议补充相对应的 Jest 单元测试（`.unit.test.ts`）。项目内置了完整的预提交（Husky）与 GitHub Actions CI 检查，并且使用 semantic-release 自动发布。
 
 MIT

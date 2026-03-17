@@ -19,12 +19,7 @@
       "semantic-release-plugin-update-version-in-files",
       {
         "files": [
-          "src/lib/version.ts",
-          "dist/main/lib/version.js",
-          "dist/main/lib/version.d.ts",
-          "dist/module/lib/version.js",
-          "dist/module/lib/version.d.ts",
-          "dist/umd/supabase.js"
+          "packages/supabase-mp-js/src/lib/version.ts"
         ],
         "placeholder": "0.0.0-automated"
       }
@@ -40,6 +35,11 @@
         "addReleases": false
       }
     ],
-    "@semantic-release/npm"
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "packages/supabase-mp-js"
+      }
+    ]
   ]
 }

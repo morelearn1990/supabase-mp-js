@@ -3,7 +3,9 @@
     "src"
   ],
   "exclude": [
-    "node_modules/**/*.ts"
+    "node_modules/**/*.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
   ],
   "compilerOptions": {
     "declaration": true,
