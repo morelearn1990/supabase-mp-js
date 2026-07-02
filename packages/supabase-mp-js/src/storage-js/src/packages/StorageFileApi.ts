@@ -24,7 +24,7 @@ const DEFAULT_FILE_OPTIONS: FileOptions = {
   upsert: false,
 }
 
-declare const wx: any
+declare const uni: any
 
 export default class StorageFileApi {
   protected supabaseKey: string | undefined
@@ -90,19 +90,18 @@ export default class StorageFileApi {
       const cleanPath = this._removeEmptyFolders(path)
       const _path = this._getFinalPath(cleanPath)
 
-      // WeChat Mini Program Check
       // @ts-ignore
-      if (typeof wx !== 'undefined' && typeof wx.uploadFile === 'function') {
+      if (typeof uni !== 'undefined' && typeof uni.uploadFile === 'function') {
         return new Promise((resolve, reject) => {
           // @ts-ignore
-          wx.uploadFile({
+          uni.uploadFile({
             url: `${this.url}/object/${_path}`,
             filePath: typeof fileBody === 'string' ? fileBody : (fileBody as any).tempFilePath,
             name: 'file',
             header: {
               ...headers,
-              'content-type': 'multipart/form-data', // wx.uploadFile requires this or lets it be handled? Usually it sets it. Let's be explicit or default.
-              // Actually wx.uploadFile sets content-type to multipart/form-data; boundary=... automatically.
+              'content-type': 'multipart/form-data', // uni.uploadFile requires this or lets it be handled? Usually it sets it. Let's be explicit or default.
+              // Actually uni.uploadFile sets content-type to multipart/form-data; boundary=... automatically.
               // But we might need to pass other headers like Authorization.
               // Notes: Authorization is already in this.headers? No, check constructor.
               // StorageFileApi constructor takes headers.
@@ -114,7 +113,7 @@ export default class StorageFileApi {
               cacheControl: options.cacheControl as string,
             },
             success: (res: any) => {
-              // wx.uploadFile returns data as string usually.
+              // uni.uploadFile returns data as string usually.
               if (res.statusCode >= 200 && res.statusCode < 300) {
                 resolve({
                   data: { path: cleanPath },

@@ -127,7 +127,7 @@ export default class RealtimeClient {
     // this.ws_connect(url,(data:any)=>{
     //     console.log(data,'datad')
     //   })
-    this.conn = wx.connectSocket({ url: this._endPointURL(), header: this.headers })
+    this.conn = uni.connectSocket({ url: this._endPointURL(), header: this.headers })
     if (this.conn) {
       this.conn.binaryType = 'arraybuffer'
       // this.conn.onOpen = () =>  {

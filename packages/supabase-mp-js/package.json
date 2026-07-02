@@ -1,13 +1,13 @@
 {
   "name": "supabase-mp-js",
   "version": "0.3.3",
-  "description": "Supabase Client for WeChat Miniprogram",
+  "description": "Supabase Client for uni-app (mini-program)",
   "keywords": [
     "javascript",
     "typescript",
     "supabase",
-    "miniprogram",
-    "wechat"
+    "uni-app",
+    "miniprogram"
   ],
   "homepage": "https://github.com/zuohuadong/supabase-mp-js",
   "bugs": "https://github.com/zuohuadong/supabase-mp-js/issues",
@@ -19,6 +19,7 @@
   "main": "dist/main/index.js",
   "module": "dist/module/index.js",
   "miniprogram": "./dist/main",
+  "uni-app": "./dist/main",
   "types": "dist/module/index.d.ts",
   "sideEffects": false,
   "repository": "zuohuadong/supabase-mp-js",

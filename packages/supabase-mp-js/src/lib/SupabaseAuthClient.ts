@@ -9,14 +9,14 @@ type WechatLoginResponse = {
   error?: any
 }
 
-declare const wx: any
+declare const uni: any
 
 export class SupabaseAuthClient extends GoTrueClient {
   constructor(options: SupabaseAuthClientOptions) {
     super(options)
 
-    if (typeof wx !== 'undefined' && typeof wx.onAppShow === 'function') {
-      wx.onAppShow(async () => {
+    if (typeof uni !== 'undefined' && typeof uni.onAppShow === 'function') {
+      uni.onAppShow(async () => {
         await this._recoverAndRefresh()
         if (this.autoRefreshToken) {
           this.startAutoRefresh()
@@ -28,7 +28,7 @@ export class SupabaseAuthClient extends GoTrueClient {
   /**
    * Initializes a WeChat login flow.
    *
-   * @param params.code The authorization code from wx.login()
+   * @param params.code The authorization code from uni.login()
    * @param params.functionName Optional. The name of the Edge Function to call. Defaults to 'wechat-login'.
    * @param params.options Optional. fetch options.
    */

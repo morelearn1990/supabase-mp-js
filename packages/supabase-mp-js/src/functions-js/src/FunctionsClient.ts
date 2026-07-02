@@ -82,19 +82,18 @@ export class FunctionsClient {
       const fetchFn = this.customFetch || this.fetch
       const functionUrl = `${this.url}/${functionName}`
 
-      // WeChat Mini Program Check
       // @ts-ignore
-      if (typeof wx !== 'undefined' && typeof wx.request === 'function') {
+      if (typeof uni !== 'undefined' && typeof uni.request === 'function') {
         return new Promise((resolve) => {
           // @ts-ignore
-          wx.request({
+          uni.request({
             url: functionUrl,
             method: (method || 'POST') as any,
             header: { ..._headers, ...this.headers, ...headers },
             data: body,
             responseType: 'text', // Get raw text to handle parsing manually based on Content-Type if needed
             dataType: 'text', // Prevent auto-JSON parse to align with standard fetch behavior of explicit .json() check?
-            // Actually, to make it robust, let's let wx parse JSON if it looks like JSON, but we must check statusCode.
+            // Actually, to make it robust, let's let uni parse JSON if it looks like JSON, but we must check statusCode.
             // If we use 'text', we must JSON.parse ourselves.
             // Let's use 'text' to be safe against "success but error" auto-parsing quirks.
             success: (res: any) => {

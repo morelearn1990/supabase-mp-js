@@ -1,7 +1,7 @@
 const mimeMap = require('./mimeMap.js')
 
 function FormData() {
-  let fileManager = wx.getFileSystemManager()
+  let fileManager = uni.getFileSystemManager()
   let data = {}
   let files = []
 

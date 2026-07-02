@@ -41,7 +41,7 @@ export const createClient = <
 ): SupabaseClient<Database, SchemaName, Schema> => {
   const clientOptions = { ...options }
   // @ts-ignore
-  if (typeof wx !== 'undefined' && !clientOptions.auth?.storage) {
+  if (typeof uni !== 'undefined' && !clientOptions.auth?.storage) {
     if (!clientOptions.auth) clientOptions.auth = {}
     clientOptions.auth.storage = new SupabaseMPAdapter()
   }

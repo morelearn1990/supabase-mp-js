@@ -1,12 +1,13 @@
-// Basic type definitions for WeChat Mini Program API used in this library
-declare namespace WechatMiniprogram {
-  interface Wx {
+// Basic type definitions for uni-app API used in this library
+declare namespace UniApp {
+  interface Uni {
     request(options: RequestOption): RequestTask
     uploadFile(options: UploadFileOption): UploadTask
     connectSocket(options: ConnectSocketOption): SocketTask
     getStorageSync(key: string): any
     setStorageSync(key: string, data: any): void
     removeStorageSync(key: string): void
+    onAppShow(callback: (res: any) => void): void
     getFileSystemManager(): FileSystemManager
     arrayBufferToBase64(buffer: ArrayBuffer): string
   }
@@ -25,6 +26,7 @@ declare namespace WechatMiniprogram {
       success?: (res: ReadFileSuccessCallbackResult) => void
       fail?: (res: GeneralCallbackResult) => void
     }): void
+    readFileSync(filePath: string, encoding?: string): string | ArrayBuffer
   }
 
   interface Stats {
@@ -109,4 +111,4 @@ declare namespace WechatMiniprogram {
   }
 }
 
-declare const wx: WechatMiniprogram.Wx
+declare const uni: UniApp.Uni

@@ -61,7 +61,7 @@ export const setItemAsync = async (
     try {
       const jsonData = JSON.stringify(data)
       console.log(`[setItemAsync] Saving key: ${key}, data length: ${jsonData.length}`)
-      wx.setStorageSync(key, jsonData)
+      uni.setStorageSync(key, jsonData)
       console.log(`[setItemAsync] Successfully saved key: ${key}`)
       resolve()
     } catch (error) {
@@ -74,7 +74,7 @@ export const setItemAsync = async (
 export const getItemAsync = async (storage: SupportedStorage, key: string): Promise<any | null> => {
   return new Promise((resolve, reject) => {
     try {
-      const value = wx.getStorageSync(key)
+      const value = uni.getStorageSync(key)
       if (!value) {
         console.log(`[getItemAsync] No value found for key: ${key}`)
         resolve(null)
@@ -94,7 +94,7 @@ export const removeItemAsync = async (storage: SupportedStorage, key: string): P
   return new Promise((resolve, reject) => {
     try {
       console.log(`[removeItemAsync] Removing key: ${key}`)
-      wx.removeStorageSync(key)
+      uni.removeStorageSync(key)
       console.log(`[removeItemAsync] Successfully removed key: ${key}`)
       resolve()
     } catch (error) {

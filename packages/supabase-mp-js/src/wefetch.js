@@ -1,6 +1,6 @@
 /**
- * 微信小程序 Fetch 适配器
- * 将 wx.request 封装为标准 Fetch API 接口
+ * uni-app Fetch 适配器
+ * 将 uni.request 封装为标准 Fetch API 接口
  */
 
 const MAX_CONCURRENT_REQUESTS = 10
@@ -21,7 +21,7 @@ function processQueue() {
 
   const timeout = options.timeout || DEFAULT_TIMEOUT
 
-  wx.request({
+  uni.request({
     url: url,
     data: options.body,
     method: options.method || 'GET',
@@ -86,14 +86,14 @@ function normalizeHeaders(headers) {
 /**
  * 创建标准 Response 对象
  */
-function createResponse(wxRes) {
-  const status = wxRes.statusCode
+function createResponse(uniRes) {
+  const status = uniRes.statusCode
   const ok = status >= 200 && status <= 299
 
   // 转换响应头为小写（HTTP 规范要求不区分大小写）
   const headers = new Map()
-  if (wxRes.header) {
-    Object.entries(wxRes.header).forEach(([key, value]) => {
+  if (uniRes.header) {
+    Object.entries(uniRes.header).forEach(([key, value]) => {
       headers.set(key.toLowerCase(), value)
     })
   }
@@ -110,24 +110,24 @@ function createResponse(wxRes) {
       keys: () => headers.keys(),
       values: () => headers.values(),
     },
-    data: wxRes.data, // 微信特有：直接访问解析后的数据
+    data: uniRes.data, // 小程序特有：直接访问解析后的数据
 
     // Fetch API 标准方法
     json() {
-      return Promise.resolve(wxRes.data)
+      return Promise.resolve(uniRes.data)
     },
     text() {
       return Promise.resolve(
-        typeof wxRes.data === 'string' ? wxRes.data : JSON.stringify(wxRes.data)
+        typeof uniRes.data === 'string' ? uniRes.data : JSON.stringify(uniRes.data)
       )
     },
     blob() {
-      // 微信小程序不支持 Blob，返回原始数据
-      return Promise.resolve(wxRes.data)
+      // 小程序环境中不支持 Blob，返回原始数据
+      return Promise.resolve(uniRes.data)
     },
     arrayBuffer() {
-      // 微信小程序不支持 ArrayBuffer 响应，返回原始数据
-      return Promise.resolve(wxRes.data)
+      // 小程序环境中不支持 ArrayBuffer 响应，返回原始数据
+      return Promise.resolve(uniRes.data)
     },
   }
 }
@@ -155,7 +155,7 @@ function getStatusText(status) {
 }
 
 /**
- * 微信小程序 Fetch 适配器
+ * uni-app 小程序 Fetch 适配器
  * 模拟标准 Fetch API
  *
  * @param {string} url - 请求 URL

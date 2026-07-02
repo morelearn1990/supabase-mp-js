@@ -9,12 +9,12 @@ interface UploadOptions {
 }
 
 /**
- * Uploads a large file using TUS protocol (Resumable Uploads) in WeChat Mini Program.
+ * Uploads a large file using TUS protocol (Resumable Uploads) in uni-app.
  * This function is tree-shakable (not bound to the main client class).
  *
  * @param url - The bucket URL (e.g. https://xyz.supabase.co/storage/v1/s3)
  * @param headers - Authorization headers (apikey, Authorization)
- * @param filePath - Local file path (wx.chooseMedia result)
+ * @param filePath - Local file path (uni.chooseMedia result)
  * @param bucketName - Target bucket name
  * @param objectName - Target file path in bucket
  * @param options - Upload options
@@ -27,10 +27,10 @@ export async function uploadLargeFile(
   objectName: string,
   options?: UploadOptions
 ) {
-  const fs = wx.getFileSystemManager()
+  const fs = uni.getFileSystemManager()
 
   // 1. Get File Stats
-  const stats = await new Promise<WechatMiniprogram.Stats>((resolve, reject) => {
+  const stats = await new Promise<UniApp.Stats>((resolve, reject) => {
     fs.stat({
       path: filePath,
       success: resolve,
@@ -173,20 +173,20 @@ function base64(str: string) {
 
   // Fallback: use built-in btoa if available (WeChat usually has it in Worker/JSCore but maybe not exposed)
   // Actually, the simplest is explicit Buffer use if we can, but we removed Buffer polyfill?
-  // `wx.arrayBufferToBase64` exists!
+  // `uni.arrayBufferToBase64` exists!
   const buffer = new Uint8Array(str.length)
   for (let i = 0; i < str.length; i++) {
     buffer[i] = str.charCodeAt(i)
   }
-  return wx.arrayBufferToBase64(buffer.buffer)
+  return uni.arrayBufferToBase64(buffer.buffer)
 }
 
 function request(
   url: string,
   options: any
-): Promise<WechatMiniprogram.RequestSuccessCallbackResult> {
+): Promise<UniApp.RequestSuccessCallbackResult> {
   return new Promise((resolve, reject) => {
-    wx.request({
+    uni.request({
       url,
       ...options,
       success: resolve,
