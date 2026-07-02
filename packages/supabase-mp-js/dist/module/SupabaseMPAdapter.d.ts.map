@@ -1,0 +1,1 @@
+{"version":3,"file":"SupabaseMPAdapter.d.ts","sourceRoot":"","sources":["../../src/SupabaseMPAdapter.ts"],"names":[],"mappings":"AAEA,qBAAa,iBAAiB;IAC5B,OAAO,CAAC,GAAG,EAAE,MAAM,GAAG,MAAM,GAAG,IAAI;IASnC,OAAO,CAAC,GAAG,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM,GAAG,IAAI;IAQzC,UAAU,CAAC,GAAG,EAAE,MAAM,GAAG,IAAI;CAO9B"}

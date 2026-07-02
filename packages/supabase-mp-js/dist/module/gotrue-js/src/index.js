@@ -1,0 +1,5 @@
+import GoTrueClient from './GoTrueClient';
+export { GoTrueClient };
+export * from './lib/types';
+export * from './lib/errors';
+//# sourceMappingURL=index.js.map

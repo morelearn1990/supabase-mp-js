@@ -82,6 +82,7 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist
+!packages/supabase-mp-js/dist/
 
 # Gatsby files
 .cache/
